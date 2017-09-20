@@ -1,0 +1,139 @@
+/* This is for the most basic element, which share by main page and product page*/
+
+@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900");
+
+/* Basic */
+
+	body, input, select, textarea {
+		color: black;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-size: 15pt;
+		font-weight: 300 !important;
+		letter-spacing: -0.025em;
+		line-height: 1.75em;
+	}
+
+		body.main_page * {
+			-moz-animation: none !important;
+			-webkit-animation: none !important;
+			-o-animation: none !important;
+			-ms-animation: none !important;
+			animation: none !important;
+		}
+		
+		body.product_page * {
+			-moz-animation: none !important;
+			-webkit-animation: none !important;
+			-o-animation: none !important;
+			-ms-animation: none !important;
+			animation: none !important;
+		}
+
+/* No Move Header */
+    #no_move_header{
+        background:red;
+        height:10%;
+        width:100%;
+        position:fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+/* No Move footer */
+    #no_move_footer{
+        background:red;
+        height:10%;
+        width:100%;
+        position:fixed;
+        top: 90%;
+        left:0;
+        z-index: 1;
+    }
+
+/* No Move Left Bar */
+    #no_move_left_bar{
+        color: white;
+        left : 0;
+        top:10%;
+        position: fixed;
+        width: 200px;
+        height: 100%;
+        background: #000;
+        z-index: 1;
+    }
+    
+/* Page Content*/
+    #page_content{
+         margin-top : 10%;
+         margin-left: 200px;
+    }
+
+/* Main Page Element */
+
+    div.product_thumbnail_container{
+        height: 220px;
+        display: -ms-inline-flexbox;
+        display: -webkit-inline-flex;
+        -webkit-flex-flow: row wrap;
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+        -ms-flex-align: start;
+        -webkit-align-items: flex-start;
+        align-items: flex-start;
+    }
+    div.product_thumbnail_item{
+        width: 200px;
+        height: 200px;
+        background-color: tomato;
+        box-sizing: border-box;
+        outline: 2px solid blue;
+        margin: 5px;
+    }
+    div.product_thumbnail_image_container{
+        overflow-y:auto;
+        width: 100%;
+        height: 80%;
+    }
+    div.product_thumbnail_txt_container{
+        overflow-y:auto;
+        top:80%;
+        width: 100%;
+        background-color: #999;
+        height: 20%;
+        line-height: 20%;
+    }
+    div.product_thumbnail_image_container img.center{
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        max-height: 100%;
+    }
+    p.product_thumbnail_txt_left{
+        font-size: 12pt;
+        float: left;
+        width: 70%;
+        color: white;
+    }
+    p.product_thumbnail_txt_right{
+        font-size: 12pt;
+        width: 30%;
+        color: white;
+        float: right;
+    }
+
+/* Product Page Element */
+    #product_name{
+        
+    }
+    
+    #product_price{
+        
+    }
+    
+    #product_description{
+        
+    }
+    
+    #product_add_button{
+        
+    }
