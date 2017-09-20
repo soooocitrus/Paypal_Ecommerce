@@ -7,7 +7,7 @@
 	body, input, select, textarea {
 		color: black;
 		font-family: 'Source Sans Pro', sans-serif;
-		font-size: 15pt;
+		font-size: 10pt;
 		font-weight: 300 !important;
 		letter-spacing: -0.025em;
 		line-height: 1.75em;
@@ -32,7 +32,7 @@
 /* No Move Header */
     #no_move_header{
         background:red;
-        height:10%;
+        height:50px;
         width:100%;
         position:fixed;
         top: 0;
@@ -41,20 +41,23 @@
     }
 /* No Move footer */
     #no_move_footer{
-        background:red;
-        height:10%;
+        background:green;
+        height:50px;
         width:100%;
         position:fixed;
-        top: 90%;
+        bottom: 0;
         left:0;
         z-index: 1;
     }
 
 /* No Move Left Bar */
     #no_move_left_bar{
+        font-weight: bold;
+        font-size: 25pt;
+        text-align: center;
         color: white;
         left : 0;
-        top:10%;
+        top:50px;
         position: fixed;
         width: 200px;
         height: 100%;
@@ -64,14 +67,15 @@
     
 /* Page Content*/
     #page_content{
-         margin-top : 10%;
+         margin-top : 50px;
          margin-left: 200px;
+         margin-bottom: 50px;
+         z-index: 2;
     }
 
 /* Main Page Element */
 
     div.product_thumbnail_container{
-        height: 220px;
         display: -ms-inline-flexbox;
         display: -webkit-inline-flex;
         -webkit-flex-flow: row wrap;
@@ -81,7 +85,7 @@
         -webkit-align-items: flex-start;
         align-items: flex-start;
     }
-    div.product_thumbnail_item{
+    div.simpleCart_shelfItem{
         width: 200px;
         height: 200px;
         background-color: tomato;
@@ -108,17 +112,19 @@
         max-width: 100%;
         max-height: 100%;
     }
-    p.product_thumbnail_txt_left{
+    p.item_name{
         font-size: 12pt;
         float: left;
         width: 70%;
         color: white;
     }
-    p.product_thumbnail_txt_right{
+    p.item_price{
+        padding-right: 0;
         font-size: 12pt;
         width: 30%;
         color: white;
         float: right;
+        text-align: right;
     }
 
 /* Product Page Element */

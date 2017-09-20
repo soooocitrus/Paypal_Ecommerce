@@ -1,0 +1,55 @@
+#category{
+	padding-left: 0;
+	margin-top: 0;
+	text-align: center;
+	font-size: normal;
+	background: #ebebeb;
+	line-height: 100%;
+}
+
+#category li{
+	left: 0;
+	width: 100%;
+	line-height: 200%;
+	float: left;
+	position: relative;
+	list-style: none;
+}
+
+/* main level link */
+#category a{
+	font-weight: bold;
+	color: #e7e5e5;
+	display: block;
+	text-decoration: none;
+}
+
+/* main level link hovered */
+#category li:hover > a{
+	background: #666;
+	color: #444;
+}
+
+/* sub level link */
+#category li:hover li a{
+	background: #555;
+	border: none;
+	color: #444;
+}
+
+/* sub levels link hover */
+#category ul li:hover a{
+	background: #444;
+	border: none;
+	color: #222;
+}
+/* dropdown */
+#category li:hover > ul {
+	padding-left: 0;
+	display: block;
+}
+
+/* level 2 list */
+#category ul{
+	display: none;
+}
