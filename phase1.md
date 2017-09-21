@@ -2,3 +2,4 @@
 
 21/09/2017: Design the website structure
             Involve simpleCart project
+            Complete Shopping Cart
