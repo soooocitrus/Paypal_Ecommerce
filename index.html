@@ -13,7 +13,6 @@
 		<script src="https://rawgit.com/wojodesign/simplecart-js/master/simpleCart.js"></script>
 		<script src="https://rawgit.com/wojodesign/simplecart-js/master/test/inc/jquery.1.6.1.min.js"></script>
 		<script type="text/javascript" src="js/init.js"></script>
-		<script type="text/javascript" scr="js/shoppingcart.js"></script>
 		<!-- This is for the case where the brower did not support the javascript-->
 		<!--noscript>
 			Sorry, your browser did not support the javascript.
@@ -21,12 +20,15 @@
 	</head>
 	<body class="main_page">
 		<div id="no_move_header">
-			Shopping Cart: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)
-			SubTotal: <span id="simpleCart_total" class="simpleCart_total"></span> <br/>
-			Final Total: <span id="simpleCart_grandTotal" class="simpleCart_grandTotal"></span> <br/>
-			<a href="javascript:;" class="simpleCart_empty">empty cart</a>
-			<a href="javascript:;" class="simpleCart_checkout">checkout</a>
-			<div class="simpleCart_items" ></div>
+			<ul id="shoppingcart">
+				<li>Total: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)
+					<ul>
+						<li  id="shoppingcart_empty"><a href="javascript:;" class="simpleCart_empty">empty cart</a></li>
+						<li id="shoppingcart_checkout"><a href="javascript:;" class="simpleCart_checkout">checkout</a></li>
+						<li><div class="simpleCart_items" ></div></li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 		<div id="no_move_left_bar">
 			<ul id="category">

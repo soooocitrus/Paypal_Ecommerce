@@ -32,12 +32,12 @@
 /* No Move Header */
     #no_move_header{
         background:red;
-        height:50px;
+        height:80px;
         width:100%;
         position:fixed;
         top: 0;
         left: 0;
-        z-index: 1;
+        z-index: 2;
     }
 /* No Move footer */
     #no_move_footer{
@@ -57,12 +57,12 @@
         text-align: center;
         color: white;
         left : 0;
-        top:50px;
+        top:80px;
         position: fixed;
         width: 200px;
         height: 100%;
         background: #000;
-        z-index: 1;
+        z-index: 2;
     }
     
 /* Page Content*/
@@ -70,7 +70,7 @@
          margin-top : 50px;
          margin-left: 200px;
          margin-bottom: 50px;
-         z-index: 2;
+         z-index: 3;
     }
 
 /* Main Page Element */
