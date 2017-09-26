@@ -96,7 +96,7 @@
 						{ attr: "name", label: "Name" },
 						{ attr: "price", label: "Price", view: 'currency' },
 						{ view: "decrement", label: false },
-						{ attr: "quantity", label: "Qty" },
+						{ attr: "quantity", label: "Quantity" },
 						{ view: "increment", label: false },
 						{ attr: "total", label: "SubTotal", view: 'currency' },
 						{ view: "remove", text: "Remove", label: false }
@@ -680,8 +680,19 @@
 					// cycle through the columns to create each cell for the item
 					for (j = 0, jlen = settings.cartColumns.length; j < jlen; j += 1) {
 						column	= cartColumn(settings.cartColumns[j]);
-						klass	= "item-" + (column.attr || (isString(column.view) ? column.view : column.label || column.text || "cell")) + " " + column.className;
+
+						//klass	= "item-" + (column.attr || (isString(column.view) ? column.view : column.label || column.text || "cell")) + " " + column.className;
+						//content = cartCellView(item, column);
+
+						//edit by 1155046948
+						var itmColumnName = column.attr || (isString(column.view) ? column.view : column.label || column.text || "cell")
+						klass	= "item-" + itmColumnName + " " + column.className;
 						content = cartCellView(item, column);
+						if(itmColumnName === "quantity"){
+							content = '<input type="number" class="simpleCart_input" value="' + content + '" min="1">';
+						}
+
+						//edit end
 						cell	= simpleCart.$create(TD).addClass(klass).html(content);
 
 						row.append(cell);
