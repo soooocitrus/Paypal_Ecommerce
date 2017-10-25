@@ -1,15 +1,12 @@
 <!DOCTYPE HTML>
 <html>
     <?php
-    
         define('DBSERVER',"localhost");
         define('DBUSER',"sooocitrus");
         define('DBPASS',"123456");
         define('DATABASE',"IERG4210");
-        
         if (!$connection = @ mysql_connect(DBSERVER, DBUSER, DBPASS))
           die("Cannot connect");
-        
         @mysql_select_db(DATABASE) or die( "Unable to select database");
     ?>
 	<head>
@@ -67,7 +64,7 @@
 			            $query ="SELECT catname FROM categories where catid = ".$catid.";";
 			            $result  = mysql_query($query);
                         $query_row = mysql_fetch_array($result);
-                        $catname = $query_row[catname];
+                        $catname = $query_row['catname'];
 			            print '<a class="history_hyperlink" href="main.php?catid='.$catid.'"> > '.$catname.'</a>';
 			        }
 				?>

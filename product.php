@@ -1,4 +1,4 @@
-i<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
     <?php
     
@@ -68,11 +68,11 @@ i<!DOCTYPE HTML>
 			            $query ="SELECT pname FROM products where pid = ".$pid.";";
 			            $result  = mysql_query($query);
                         $query_row1 = mysql_fetch_array($result);
-                        $pname = $query_row1[pname];
+                        $pname = $query_row1['pname'];
                         $query ="SELECT catname FROM categories where catid = ".$catid.";";
 			            $result  = mysql_query($query);
                         $query_row2 = mysql_fetch_array($result);
-                        $catname = $query_row2[catname];
+                        $catname = $query_row2['catname'];
                         print '<a class="history_hyperlink" href="main.php?catid='.$catid.'"> > '.$catname.'</a>';
 			            print '<a class="history_hyperlink" href="product.php?catid='.$catid.'&pid='.$pid.'"> > '.$pname.'</a>';
 			        }
@@ -83,9 +83,9 @@ i<!DOCTYPE HTML>
 			    $query='SELECT * FROM products where pid ='.$pid.' ;';
                 $result=mysql_query($query);
                 $query_row=mysql_fetch_array($result);
-    			$pname = $query_row[pname];
-    			$price = $query_row[price];
-    			$description = $query_row[description];
+    			$pname = $query_row['pname'];
+    			$price = $query_row['price'];
+    			$description = $query_row['description'];
                 print '<div class="product_picture_container">';
                 print '<div class="image_wrapper">';
                 print '<img class="center" src="../image/'.$pid.'.jpeg"></img>';

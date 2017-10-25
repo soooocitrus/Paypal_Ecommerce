@@ -1,4 +1,5 @@
 	<?php
+		error_reporting("E_ALL");
 		define('DBSERVER',"localhost");
 		define('DBUSER',"sooocitrus");
 		define('DBPASS',"123456");
@@ -60,12 +61,40 @@
 			mysql_query($sql);
 			$sql = "SELECT pid FROM products ORDER BY pid DESC LIMIT 1";
 			$lastInsertID = mysql_query($sql);
-			$imageName = mysql_fetch_assoc($lastInsertID)['pid'];
+			$query_row=mysql_fetch_assoc($lastInsertID);
+			$imageName=$query_row['pid'];
 			if(strlen($imageName)!=0 && $imageName != 0){
 				if(isset($_FILES["prod_insert_image"])){
-					echo"yes";
-			    } else{
-			        echo "Error";
+					$allowed = array("jpg" => "image/jpg",
+			        	"jpeg" => "image/jpeg",
+			        	"gif" => "image/gif", 
+			        	"png" => "image/png");
+			        	$filename = $_FILES["prod_insert_image"]["name"];
+			        	$filetype = $_FILES["prod_insert_image"]["type"];
+			        	$filesize = $_FILES["prod_insert_image"]["size"];
+			        	// Verify file extension
+			        	$ext = pathinfo($filename, PATHINFO_EXTENSION);
+			        
+			        	if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
+			    
+			        	// Verify file size - 5MB maximum
+			        	$maxsize = 10 * 1024 * 1024;
+			        	if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
+			    
+			        	// Verify MYME type of the file
+			        	if(in_array($filetype, $allowed)){
+			           		 // Check whether file exists before uploading it
+			           		 if(file_exists("image/".$imageName.".jpeg")){
+			               			 echo $imageName.".jpeg" . " is already exists.";
+			           		 } else{
+			               			 move_uploaded_file($_FILES["prod_insert_image"]["tmp_name"], "image/".$imageName.".jpeg");
+			               			 echo "Your file was uploaded successfully.";
+			           		 } 
+			       		} else{
+			            	echo "Error: There was a problem uploading your file. Please try again."; 
+			        	}
+			    	} else{
+			        echo "Error: ".$_FILES["prod_insert_image"]["error"];
 			    }
 			}
 		}
@@ -110,6 +139,38 @@
 				AND catid = '$prod_update_catid'";
 	    		mysql_query($sql);
 			}
+			if(isset($_FILES["prod_update_image"]) && $_FILES["prod_update_image"]["error"] == 0){
+			        $allowed = array("jpg" => "image/jpg",
+			        "jpeg" => "image/jpeg",
+			        "gif" => "image/gif", 
+			        "png" => "image/png");
+			        $filename = $_FILES["prod_update_image"]["name"];
+			        $filetype = $_FILES["prod_update_image"]["type"];
+			        $filesize = $_FILES["prod_update_image"]["size"];
+			        // Verify file extension
+			        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+			        
+			        if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
+			    
+			        // Verify file size - 10MB maximum
+			        $maxsize = 10 * 1024 * 1024;
+			        if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
+			    
+			        // Verify MYME type of the file
+			        if(in_array($filetype, $allowed)){
+			            // Check whether file exists before uploading it
+			            if(file_exists("image/".$prod_update_pid.".jpeg")){
+			                echo "image/".$prod_update_pid.".jpeg" . " is already exists.";
+			                move_uploaded_file($_FILES["prod_update_image"]["tmp_name"], "image/".$prod_update_pid.".jpeg");
+			                echo "Your file was uploaded successfully.";
+			            } else{
+			                move_uploaded_file($_FILES["prod_update_image"]["tmp_name"], "image/".$prod_update_pid.".jpeg");
+			                echo "Your file was uploaded successfully.";
+			            } 
+			        } else{
+			            echo "Error: There was a problem uploading your file. Please try again."; 
+			        }
+			    }
 		}
 		
 		function ierg4210_prod_delete() {
@@ -117,7 +178,8 @@
 			$prod_delete_pid=$_POST[prod_delete_pid];
 			$sql = "DELETE FROM products WHERE catid ='$prod_delete_catid' 
 				AND pid = '$prod_delete_pid'";
-    		mysql_query($sql);
+    			mysql_query($sql);
+			unlink ("image/".$prod_delete_pid.".jpeg");
 		}
 
 		switch ($_REQUEST[action]){
@@ -149,6 +211,6 @@
 		  echo "Unknow action";
 		}
 		mysql_close();
-		//header('Location: admin_panel.php');
+		header('Location: admin_panel.php');
 		//header( "refresh:1;url=admin_panel.php" );
 	?>
