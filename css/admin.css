@@ -1,0 +1,30 @@
+#operation{
+    display: inline;
+}
+p{
+    display: inline;
+}
+h1{
+    text-align: center;
+}
+#operation_container{
+    margin: auto;
+    text-align: center;
+}
+form>select{
+    display:block;
+}
+label{
+    display:block;
+}
+fieldset{
+    margin: auto;
+    display:none;
+    width: 20%;
+}
+.prod_update_old_name{
+    display:none;
+}
+.prod_delete_old_name{
+    display:none;
+}
