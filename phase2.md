@@ -1,1 +1,3 @@
 06/10/2017: The reason why we apply for an elastic public ip is that: as DNS server would solve the domain name to one or some specific ips which were assigned to these ip before. And if we didn't apply the elastic public ip in out project. The AWS would assign the ip of our server dynamically which means even if at the first attempt, the ip and domain name mapping is right. But for the further attempts, as the ip of the server is changed, but DNS server still remember the old mapping pair, which would response one incorrect ip the user expects, which might be used by the attacker to pretend your server and do some awful things.
+
+26/10/2017: Update phase 2B, the implementaion is without AJAX for the form.
