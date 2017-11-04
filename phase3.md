@@ -1,0 +1,1 @@
+04/11/2017: The shopping cart js is 'js/simpleCart.js', for the details, we could refer to the official website 'http://simplecartjs.org/documentation'
