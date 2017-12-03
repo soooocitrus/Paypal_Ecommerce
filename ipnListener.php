@@ -6,7 +6,7 @@ ini_set('display_errors', 'On');
 ini_set("file_uploads", "On");
 ini_set("error_log", "/var/www/php.errors");
 
-define("DEBUG", 1);
+define("DEBUG", false);
 define("LOG_FILE", "/var/www/ipn.log");
 
 // Reading raw POST data from input stream instead.
@@ -126,7 +126,12 @@ if (strcmp ($res, "VERIFIED") == 0) {
     $stmt= $connection -> prepare("SELECT digest, salt FROM orders WHERE orderid=:orderid");
     $stmt->bindParam(':orderid', $invoice, PDO::PARAM_INT);
     $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if(count($result) != 2){
+        print_r($result);
+        throw new Exception("Error Processing Request -- depulicate orderid", 1);
+    }
 
     $salt_stored = $result['salt'];
     $digest_stored = $result['digest'];

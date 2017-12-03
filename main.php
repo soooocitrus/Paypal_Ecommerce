@@ -163,6 +163,7 @@
 		    				    print '<a href="product.php?catid='.htmlspecialchars($catid, ENT_COMPAT, 'ISO-8859-1', true).'&pid='.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'">';
 		    				    print '<img class="center", src="image/'.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'.jpeg"></img>';
 		    				    print '<p class="item_id">'.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
+		    				    print '<p class="item_number">'.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
 		    				    print '<p class="item_name">'.htmlspecialchars($pname, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
 		    				    print '</a></div>';
 		    				    print '<div class="product_thumbnail_txt_container">';
@@ -182,6 +183,7 @@
 	    				    print '<a href="product.php?catid='.htmlspecialchars($catid, ENT_COMPAT, 'ISO-8859-1', true).'&pid='.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'">';
 	    				    print '<img class="center", src="image/'.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'.jpeg"></img>';
 	    				    print '<p class="item_id">'.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
+	    				    print '<p class="item_number">'.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
 	    				    print '<p class="item_name">'.htmlspecialchars($pname, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
 	    				    print '</a></div>';
 	    				    print '<div class="product_thumbnail_txt_container">';

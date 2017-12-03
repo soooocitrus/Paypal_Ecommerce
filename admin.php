@@ -279,6 +279,60 @@
 				</form>
 			</fieldset>
 		</div>
+		<table id="order table">
+			<legend>Lastest 20 Transaction Records</legend>
+			<?php
+				$stmt= $connection -> prepare("SELECT * FROM orders ORDER BY orderid DESC LIMIT 20");
+				$stmt->execute();
+				$result = $stmt->fetchAll(PDO::FETCH_BOTH);
+				$orderid_arr = array();
+				$email_arr = array();
+				$digest_arr = array();
+				$salt_arr = array();
+				$createdtime_arr = array();
+				$txn_id_arr = array();
+				$status_arr = array();
+				for($j = 0, $count = count($result); $j < $count; $j++){
+					array_push($orderid_arr, $result[$j][0]);
+					array_push($email_arr, $result[$j][1]);
+					array_push($digest_arr, $result[$j][2]);
+					array_push($salt_arr, $result[$j][3]);
+					array_push($createdtime_arr, $result[$j][4]);
+					array_push($txn_id_arr, $result[$j][5]);
+					array_push($status_arr, $result[$j][6]);
+				}
+				$orderid_threshold = $orderid_arr[count($orderid_arr)-1];
+				print '<tr><th>Order ID</th><th>User Account</th><th>Digest</th><th>Salt</th><th>CheckOut Time</th><th>Transaction ID</th><th>Status</th></tr>';
+				for ($i = 0, $size = count($orderid_arr); $i < $size; $i++) {
+					print '<tr>'.'<td>'.$orderid_arr[$i].'</td>'.'<td>'.$email_arr[$i].'</td>'.'<td>'.$digest_arr[$i].'</td>'.'<td>'.$salt_arr[$i].'</td>'.'<td>'.$createdtime_arr[$i].'</td>'.'<td>'.$txn_id_arr[$i].'</td>'.'<td>'.$status_arr[$i].'</td>'.'</tr>';
+				}
+			?>
+		</table>
+		<table>
+			<legend>Purchased List Of Lastest 20 Transaction Records</legend>
+			<?php
+				$stmt= $connection -> prepare("SELECT * FROM purchased where orderid >= :orderid_threshold ORDER BY orderid DESC");
+				$stmt->bindParam(':orderid_threshold', $orderid_threshold, PDO::PARAM_INT);
+				$stmt->execute();
+				$result = $stmt->fetchAll(PDO::FETCH_BOTH);
+				$orderid_arr = array();
+				$pid_arr = array();
+				$quantity_arr = array();
+				$price_arr = array();
+				$txn_id_arr = array();
+				for($j = 0, $count = count($result); $j < $count; $j++){
+					array_push($orderid_arr, $result[$j][0]);
+					array_push($pid_arr, $result[$j][1]);
+					array_push($quantity_arr, $result[$j][2]);
+					array_push($price_arr, $result[$j][3]);
+					array_push($txn_id_arr, $result[$j][4]);
+				}
+				print '<tr><th>Order ID</th><th>Product ID</th><th>Quantity</th><th>Price</th><th>Transaction ID</th></tr>';
+				for ($i = 0, $size = count($orderid_arr); $i < $size; $i++) {
+					print '<tr>'.'<td>'.$orderid_arr[$i].'</td>'.'<td>'.$pid_arr[$i].'</td>'.'<td>'.$quantity_arr[$i].'</td>'.'<td>'.$price_arr[$i].'</td>'.'<td>'.$txn_id_arr[$i].'</td>'.'<tr>';
+				}
+			?>
+		</table>
 	</body>
 </html>
 <?php

@@ -985,7 +985,7 @@
 						data["item_name_" + counter] = item.get("name");
 						data["quantity_" + counter] = item.quantity();
 						data["amount_" + counter] = (item.price()*1).toFixed(2);
-						data["item_number_" + counter] = item.get("item_number") || counter;
+						data["item_number_" + counter] = item.get("id") || counter;
 
 
 						// add the options
