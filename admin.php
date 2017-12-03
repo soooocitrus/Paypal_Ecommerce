@@ -308,7 +308,7 @@
 				}
 			?>
 		</table>
-		<table>
+		<table id="Purchased products table">
 			<legend>Purchased List Of Lastest 20 Transaction Records</legend>
 			<?php
 				$stmt= $connection -> prepare("SELECT * FROM purchased where orderid >= :orderid_threshold ORDER BY orderid DESC");
