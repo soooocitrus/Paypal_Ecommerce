@@ -87,10 +87,15 @@
 
 				// default options
 				settings = {
-					checkout				: { type: "PayPal", email: "you@yours.com" },
-					currency				: "USD",
+					checkout				: { 
+						type: "PayPal", 
+						sandbox: true, 
+						email: "oneera.citrus-facilitator@gmail.com",
+						custom: "",
+						invoice: ""
+					},
+					currency				: "HKD",
 					language				: "english-us",
-
 					cartStyle				: "div",
 					cartColumns			: [
 						{ attr: "name", label: "Name" },
@@ -937,6 +942,7 @@
 						return simpleCart.error("No email provided for PayPal checkout");
 					}
 
+
 					// build basic form options
 					var data = {
 							  cmd			: "_cart"
@@ -947,11 +953,15 @@
 							, tax_cart		: (simpleCart.tax()*1).toFixed(2)
 							, handling_cart : (simpleCart.shipping()*1).toFixed(2)
 							, charset		: "utf-8"
+							,custom			: opts.custom
+							, invoice		: opts.invoice
 						},
 						action = opts.sandbox ? "https://www.sandbox.paypal.com/cgi-bin/webscr" : "https://www.paypal.com/cgi-bin/webscr",
 						method = opts.method === "GET" ? "GET" : "POST";
 
-
+					// alert(data['custom']);
+					// alert("here");
+					// alert(data['invoice']);
 					// check for return and success URLs in the options
 					if (opts.success) {
 						data['return'] = opts.success;

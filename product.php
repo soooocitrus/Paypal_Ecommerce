@@ -114,7 +114,12 @@
 						<li  id="shoppingcart_empty"><a href="javascript:;" class="simpleCart_empty">empty cart</a></li>
 						<li id="shoppingcart_checkout"><a href="javascript:;" class="simpleCart_checkout">checkout</a></li>
 						<li>
-							<div id="shoppingcart_list" class="simpleCart_items" ></div>
+							<form id="checkout_form" method="POST" onsubmit="return shoppingcart_submit(this)">
+								<div id="shoppingcart_list" class="simpleCart_items" ></div>
+								<input id="custom_digest" type="hidden" name="custom" value=""/>
+								<input id="invoice_number" type="hidden" name="invoice" value=""/>
+								<input id="btncheckout" type="submit" value="checkout">
+							</form>
 						</li>
 					</ul>
 				</li>
@@ -149,6 +154,7 @@
                 print '<div class="product_text_container">';
                 print '<div class="simpleCart_shelfItem">';
                 print '<p class="item_name">'.htmlspecialchars($pname, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
+                print '<p class="item_id">'.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
                 print '<p class="item_price">$'.htmlspecialchars($price, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
                 print '<input type="number" class="item_quantity" value="1" min="1" />';
                 print '<input type="button" class="item_add" value="ADD" />';

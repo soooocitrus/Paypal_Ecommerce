@@ -29,7 +29,7 @@
             $result = $stmt->fetch();
 
             if (empty($result)) {
-            	header('Location: url=login.php?error=user', true, 302);
+            	header('Location: login.php?error=user', true, 302);
                 throw new Exception('Wrong users');
             }else{
             	$salt = $result['salt'];

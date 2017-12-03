@@ -11,7 +11,6 @@
 	        // stripslashes returns a string with backslashes stripped off.
 	        //(\' becomes ' and so on)
 	        if ($t = json_decode(stripslashes($_COOKIE['t4210']), true)) {
-	        	echo "here2";
 	            if (time() > $t['exp']) return false; //to expire the user
 	            $db = "IERG4210_USER";
 				$host = "localhost";
@@ -42,7 +41,6 @@
 	    header('Location:login.php');
 	    exit();
 	}
-?>
 ?>
 <?php
     $db = "IERG4210";
@@ -101,7 +99,7 @@
 	<body class="main_page">
 		<div id="no_move_header">
 			<div id="user_information">
-				Hi <?php print htmlspecialchars(loggedin(), ENT_COMPAT, 'ISO-8859-1', true) ?>
+				Hi <span id="user_email"><?php print htmlspecialchars(loggedin(), ENT_COMPAT, 'ISO-8859-1', true) ?></span>
 				<form method="POST" action="auth-process.php?action=<?php echo ($action = 'logout'); ?>" enctype="multipart/form-data">
 					<input type="hidden" name="nonce" value="<?php echo csrf_getNonce($action); ?>" />
 					<input type="submit" value="Logout"/>
@@ -110,10 +108,15 @@
 			<ul id="shoppingcart">
 				<li>Total: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)
 					<ul>
-						<li  id="shoppingcart_empty"><a href="javascript:;" class="simpleCart_empty">empty cart</a></li>
+						<li id="shoppingcart_empty"><a href="javascript:;" class="simpleCart_empty">empty cart</a></li>
 						<li id="shoppingcart_checkout"><a href="javascript:;" class="simpleCart_checkout">checkout</a></li>
 						<li>
-							<div id="shoppingcart_list" class="simpleCart_items" ></div>
+							<form id="checkout_form" method="POST" onsubmit="return shoppingcart_submit(this)">
+								<div id="shoppingcart_list" class="simpleCart_items" ></div>
+								<input id="custom_digest" type="hidden" name="custom" value=""/>
+								<input id="invoice_number" type="hidden" name="invoice" value=""/>
+								<input id="btncheckout" type="submit" value="checkout">
+							</form>
 						</li>
 					</ul>
 				</li>
@@ -159,6 +162,7 @@
 		    				    print '<div class="product_thumbnail_image_container">';
 		    				    print '<a href="product.php?catid='.htmlspecialchars($catid, ENT_COMPAT, 'ISO-8859-1', true).'&pid='.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'">';
 		    				    print '<img class="center", src="image/'.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'.jpeg"></img>';
+		    				    print '<p class="item_id">'.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
 		    				    print '<p class="item_name">'.htmlspecialchars($pname, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
 		    				    print '</a></div>';
 		    				    print '<div class="product_thumbnail_txt_container">';
@@ -177,6 +181,7 @@
 	    				    print '<div class="product_thumbnail_image_container">';
 	    				    print '<a href="product.php?catid='.htmlspecialchars($catid, ENT_COMPAT, 'ISO-8859-1', true).'&pid='.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'">';
 	    				    print '<img class="center", src="image/'.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'.jpeg"></img>';
+	    				    print '<p class="item_id">'.htmlspecialchars($pid, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
 	    				    print '<p class="item_name">'.htmlspecialchars($pname, ENT_COMPAT, 'ISO-8859-1', true).'</p>';
 	    				    print '</a></div>';
 	    				    print '<div class="product_thumbnail_txt_container">';

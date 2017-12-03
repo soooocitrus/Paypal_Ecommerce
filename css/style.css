@@ -1,7 +1,5 @@
 /* This is for the most basic element, which share by main page and product page*/
 
-@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900");
-
 /* Basic */
 
 	body, input, select, textarea {
@@ -55,6 +53,9 @@
         height: 100%;
         background: #000;
         z-index: 2;
+    }
+    #shoppingcart_checkout{
+        display: none;
     }
     
 /* Page Content*/
@@ -115,6 +116,9 @@
         max-width: 85%;
         max-height: 85%;
     }
+    div.product_thumbnail_image_container>a>p.item_id{
+        display: none;
+    }
     div.product_thumbnail_txt_container{
         overflow-y:auto;
         top:30%;
@@ -147,6 +151,9 @@
     div.product_thumbnail_txt_container>input.item_add{
         display: inline-block;
         float: right;
+    }
+    div.product_thumbnail_txt_container>a>p.item_id{
+        display: none;
     }
 
 /* Product Page Element */
@@ -188,6 +195,9 @@
         display: inline-block;
         font-weight: bold;
         color: black;
+    }
+    div.product_text_container>div.simpleCart_shelfItem>p.item_id{
+        display: none;
     }
     div.product_text_container>div.simpleCart_shelfItem>p.item_price{
         position: relative;
